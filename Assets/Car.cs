@@ -95,8 +95,8 @@ public class Car : MonoBehaviour
     {
         Vector2 rayDir = transform.up;
         RaycastHit2D[] hit =
-            Physics2D.RaycastAll(transform.position, rayDir, 0.7f);
-        Debug.DrawRay(transform.position, rayDir * 0.7f, Color.green);
+            Physics2D.RaycastAll(transform.position, rayDir, 2f);
+        Debug.DrawRay(transform.position, rayDir * 2f, Color.green);
 
         if(hit.Length > 1)
         {
@@ -142,6 +142,14 @@ public class Car : MonoBehaviour
         {
             moveForward = false;
             moveBackward = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Finish"))
+        {
+            Time.timeScale = 0;
         }
     }
 }
